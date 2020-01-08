@@ -4,9 +4,9 @@ use PHPMailer\PHPMailer\Exception;
 
 require_once dirname(__FILE__).'/lib/PHPMailer/src/Exception.php';
 require_once dirname(__FILE__)."/lib/PHPMailer/src/PHPMailer.php";
-require_once dirname(__FILE__)."/template.php";
+require_once dirname(__FILE__)."/template/".$_POST['form_type'].".php";
 
-$emailFrom = $_POST['email'];
+$emailFrom = isset($_POST['email']) ? $_POST['email'] : 'phpmailer@php.com';
 $emailTo = $_POST['reciever_email'];
 
 $mail = new PHPMailer(TRUE);

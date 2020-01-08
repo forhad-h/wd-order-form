@@ -27,7 +27,7 @@
       window.location = wdForm.contactUsPageUrl
       return false
     }
-    if (!isRadioValid()) return false
+    if (!isRadioValid('.item_list')) return false
 
     $('#firstStep').hide()
     $('#secondStep').show()
@@ -62,7 +62,7 @@
   $('#nextStep3Btn').on('click', function(e) {
     e.preventDefault()
 
-    if (!isRadioValid()) return false
+    if (!isRadioValid('.type_list')) return false
 
     $('#secondStep').hide()
     $('#thirdStep').show()
@@ -110,9 +110,12 @@
     $(this).next('.wd_option_box').show()
 
     if ($(this).hasClass('hasSelection1')) {
+      // if has selection option
       $('#wdHasSelection1').val(true)
     } else {
+      // for no selection option
       $('#wdHasSelection1').val(false)
+      $('#displayProductType').text('')
       $('#wdProductType').val('')
     }
 
@@ -162,10 +165,10 @@
 
 
   // Radio validation
-  function isRadioValid() {
+  function isRadioValid(targetElmClass) {
     // error effect when no option selected
-    if (!$('.radio_btn_required input[type=radio]').is(':checked')) {
-      $('.radio_btn_required .check').css('border-width', '1px')
+    if (!$('.radio_btn_required' + targetElmClass + ' input[type=radio]').is(':checked')) {
+      $('.radio_btn_required' + targetElmClass + ' .check').css('border-width', '1px')
       return false
     }
     return true

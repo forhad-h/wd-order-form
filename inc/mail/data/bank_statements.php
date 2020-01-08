@@ -53,10 +53,10 @@
   $Overdraft = $_POST['Overdraft'];
   $StartingBalance = $_POST['StartingBalance'];
   $EndBalance = $_POST['EndBalance'];
-  $RandomTransactions = $_POST['RandomTransactions'];
-  $OwnTransactions = $_POST['OwnTransactions'];
+  $RandomTransactions = isset($_POST['RandomTransactions']) ? $_POST['RandomTransactions'] : '';
+  $OwnTransactions = isset($_POST['OwnTransactions']) ? $_POST['OwnTransactions'] : '';
 
   // Others
   $hearus = $_POST['hearus'];
   $extrainfo = $_POST['extrainfo'];
-  $terms_and_conditions = $_POST['terms_and_conditions'];
+  $terms_and_conditions = isset($_POST['terms_and_conditions']) ? $_POST['terms_and_conditions'] : '';

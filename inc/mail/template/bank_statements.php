@@ -4,7 +4,7 @@ if(!function_exists('template')) {
   function emailTemplate() {
 
     // load all variables which fetch post data
-    require_once dirname(__FILE__)."/data.php";
+    require_once dirname(__FILE__)."/../data/".basename(__FILE__);
 
     // include all parts of template
     include_once dirname(__FILE__)."/styles.php";
