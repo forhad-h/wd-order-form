@@ -1,0 +1,97 @@
+#firstStep,
+#secondStep,
+#thirdStep,
+#lastStep,
+#deliveryAdress,
+.option_box {
+  display: none;
+}
+
+#firstStep,
+#secondStep,
+#thirdStep,
+#lastStep {
+  display: block;
+}
+
+.inputfile-6+label strong {
+  display: inline;
+}
+
+ul.state_list_tab.utility_list li, ul.state_list_tab.bank_list li {
+  width: 25%;
+}
+
+.single_product .product_image_wrapper {
+  position: relative;
+  cursor: pointer;
+  display: block;
+  min-height: 215px;
+  border: #e8e8e8 3px solid;
+}
+
+.product_image_wrapper,
+.product_image_wrapper * {
+  transition: 0.2s;
+}
+
+.product_image_wrapper.selected {
+  border-color: #d71920;
+}
+
+.product_image_wrapper img {
+  border: 1px solid transparent;
+}
+
+.product_image_wrapper .has_error {
+  border: 1px solid #d71920;
+}
+
+/*Date picker*/
+.picker__select--month, .picker__select--year {
+  padding: 5px;
+}
+
+table.picker__table th,
+table.picker__table td,
+.picker__day {
+  font-weight: 700;
+  border: 0 none;
+}
+
+button:not(:disabled),
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled) {
+  color: #666;
+}
+
+.picker {
+  width: 400px;
+}
+
+/* Option box */
+.option_box {
+  position: absolute;
+  left: -15px;
+  top: calc(100% + 6px);
+  width: max-content;
+  background-color: #fff;
+  padding: 25px 40px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px #00000044;
+  z-index: 999999;
+}
+
+ul.state_list_tab li.single_product .option_box a {
+  display: inline-block;
+  min-height: initial;
+  border: 0 none;
+  padding: 5px 15px;
+  font-size: 15px;
+}
+
+ul.state_list_tab li.single_product .option_box .statement_list li {
+  min-height: auto;
+  width: auto;
+}
