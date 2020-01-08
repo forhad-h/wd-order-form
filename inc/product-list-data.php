@@ -2,7 +2,7 @@
 /*
    Data for product list
 */
-$form_type = $_GET['form_type'];
+$form_type = $_GET['wd_form_type'];
 $product_list = [];
 
 if($form_type === 'bank_statements') {
@@ -27,14 +27,45 @@ if($form_type === 'bank_statements') {
        ['label' => "Danske", 'image_name' => "no-img-thumb.jpg",],
        ['label' => "First Direct", 'image_name' => "first direct.jpg",],
        ['label' => "First Trust", 'image_name' => "no-img-thumb.jpg",],
-       ['label' => "Halifax", 'image_name' => "halifax.jpg",],
-       ['label' => "HSBC", 'image_name' => "hsbc.jpg",],
+       [
+         'label' => "Halifax",
+         'image_name' => "halifax.jpg",
+         'selection1' => [
+           'title' => 'Please select account type.',
+           'options' => [
+             'Personal',
+             'Savings'
+           ],
+         ],
+       ],
+       [
+         'label' => "HSBC",
+         'image_name' => "hsbc.jpg",
+         'selection1' => [
+           'title' => 'Please select account type.',
+           'options' => [
+             'Personal',
+             'Savings'
+           ],
+         ],
+       ],
        ['label' => "Lloyds", 'image_name' => "lloyds.jpg",],
        ['label' => "Metro", 'image_name' => "metro.jpg",],
        ['label' => "Monese", 'image_name' => "no-img-thumb.jpg",],
        ['label' => "Monzo", 'image_name' => "no-img-thumb.jpg",],
        ['label' => "Nationwide", 'image_name' => "nationwide.jpg",],
-       ['label' => "Natwest", 'image_name' => "natwest.jpg",],
+       [
+         'label' => "Natwest",
+         'image_name' => "natwest.jpg",
+         'selection1' => [
+           'title' => 'Please select account type.',
+           'options' => [
+             'Personal',
+             'Savings',
+             'Online'
+           ],
+         ],
+       ],
        ['label' => "RBS", 'image_name' => "rbs.jpg",],
        ['label' => "Santander", 'image_name' => "santander.jpg",],
        ['label' => "Starling", 'image_name' => "no-img-thumb.jpg",],
@@ -56,7 +87,18 @@ if($form_type === 'bank_statements') {
        ['label' => "Yorkshire", 'image_name' => "yorkshire business.jpg",],
     ],
     [
-      ['label' => "AIB Ireland", 'image_name' => "aib.jpg",],
+      [
+        'label' => "AIB Ireland",
+        'image_name' => "aib.jpg",
+        'selection1' => [
+          'title' => 'Please select account type.',
+          'options' => [
+            'Personal',
+            'Savings',
+            'Online'
+          ],
+        ],
+      ],
       ['label' => "Bank of Ireland", 'image_name' => "bank of ireland.jpg",],
       ['label' => "EBS", 'image_name' => "ebs.jpg",],
       ['label' => "KBC", 'image_name' => "kbc.jpg",],

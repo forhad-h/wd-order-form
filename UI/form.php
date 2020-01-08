@@ -3,6 +3,7 @@
 
     // Each form data
     require_once WDF_PLUGIN_PATH.'inc/form-type-data.php';
+    require_once WDF_PLUGIN_PATH.'inc/product-list-data.php';
 ?>
 
 <div class="wd_orders_form_container">
@@ -16,6 +17,6 @@
       <?php include_once WDF_PLUGIN_PATH."UI/content/first_step.php"; ?>
       <?php include_once WDF_PLUGIN_PATH."UI/content/second_step.php"; ?>
       <?php include_once WDF_PLUGIN_PATH."UI/content/third_step.php"; ?>
-      <?php include_once WDF_PLUGIN_PATH."UI/content/".$form_type."_last_step.php"; ?>
+      <?php include_once WDF_PLUGIN_PATH."UI/content/last-step/".$form_type.".php"; ?>
   </form>
 </div>

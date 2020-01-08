@@ -41,14 +41,14 @@
     $('#totalPrice').text(item_value[2])
 
     // generate start and end date fields
-    var singleMarkup = ''
+    var singleMarkups = ''
     var item_amount = item_value[0].split(' ')[0]
 
     for (var i = 0; i < Number(item_amount); i++) {
-      singleMarkup += makeStartEnd(i + 1)
+      singleMarkups += makeStartEnd(i + 1)
     }
     $('#startEndDate').html('')
-    $('#startEndDate').append(singleMarkup)
+    $('#startEndDate').append(singleMarkups)
   })
 
   /*
@@ -69,33 +69,14 @@
   })
 
   $('.type_list input[type=radio]').on('change', function() {
-
-    // display value in last step
-    $('#displayProductType').text($(this).val())
-
     // get form type
     var formType = $('#formType').val()
 
     var product_list_index = $(this).attr('data-product-ref')
-    // request for product list
-    $.ajax({
-      method: 'GET',
-      url: wdForm.ajaxurl + '?action=get_product_list&index=' + product_list_index + '&form_type=' + formType,
-      success: function(res) {
 
-        var listItems = ''
-        var response = JSON.parse(res)
-        var pluginUrl = response.plugin_url
-        var product_list = response.product_list
+    $('.wd_product_list').hide()
+    $("#productList" + product_list_index).show()
 
-        $.each(product_list, function(index) {
-          listItems += makeProductList(pluginUrl, index, product_list[index])
-        })
-
-        $('#bankList').html('')
-        $('#bankList').append(listItems)
-      }
-    })
   })
 
   /*
@@ -109,7 +90,12 @@
   $('.next_step_4_btn').on('click', function(e) {
     e.preventDefault()
     if (!$('#wdProductName').val()) {
-      $('.product_image_wrapper img').addClass('has_error')
+      $('.wd_product_image_wrapper img').addClass('has_error')
+      return false
+    }
+
+    if ($('#wdHasSelection1').val() === 'true' && !$('#wdProductType').val()) {
+      $('#wdAccountTypeAlert').modal()
       return false
     }
     $('#thirdStep').hide()
@@ -117,34 +103,37 @@
   })
 
   // manage select option box
-  $('#bankList').on('click', '.single_product .product_image_wrapper', function(e) {
+  $('.wd_product_image_wrapper').on('click', function(e) {
     e.preventDefault()
 
-    $('.single_product .product_image_wrapper').find('.option_box').hide()
-    $(this).find('.option_box').show()
+    $('.wd_option_box').hide()
+    $(this).next('.wd_option_box').show()
 
+    if ($(this).hasClass('hasSelection1')) {
+      $('#wdHasSelection1').val(true)
+    } else {
+      $('#wdHasSelection1').val(false)
+      $('#wdProductType').val('')
+    }
 
-    $('#wdProductName').val($(this).find('h4').text())
+    $('#wdProductName').val('')
+    $('#wdProductName').val($(this).parent().find('h4').text())
     $('#wdBankImageUrl').val($(this).find('img').attr('src'))
-
-    $('.product_image_wrapper img').removeClass('has_error')
-    $('.product_image_wrapper').removeClass('selected')
-    $(this).addClass('selected')
 
     // display value in last step
     $('#displayProductName').text($('#wdProductName').val())
     $('#displayProductImage').attr('src', $('#wdBankImageUrl').val())
+    $('.wd_product_image_wrapper img').removeClass('has_error')
+    $('.wd_product_image_wrapper').removeClass('selected')
+    $(this).addClass('selected')
 
   })
-  $('#isSameAddress').on('change', function() {
-    if (!$(this).prop('checked')) {
-      $('#deliveryAdress').show()
-    } else {
-      $('#deliveryAdress').hide()
-    }
-  })
 
-  $('.product_image_wrapper').on
+  $('.wd_product_type').on('change', function() {
+    // display value in last step
+    $('#displayProductType').text($(this).val())
+    $('#wdProductType').val($(this).val())
+  })
 
   /*
      In last step
@@ -156,8 +145,13 @@
     $('#thirdStep').show()
   })
 
-
-
+  $('#isSameAddress').on('change', function() {
+    if (!$(this).prop('checked')) {
+      $('#deliveryAdress').show()
+    } else {
+      $('#deliveryAdress').hide()
+    }
+  })
 
   /*
      remove error effect
@@ -175,55 +169,6 @@
       return false
     }
     return true
-  }
-
-  // Make bank list for third step
-  function makeProductList(pluginUrl, parentIndex, product) {
-    var listItem = '<li class="single_product">'
-    listItem += '<div class="zoom_thumb">'
-    listItem += '<a href="#"><i class="fa fa-search"></i></a>'
-    listItem += ' </div>'
-
-    listItem += ' <div>'
-    listItem += '<div class="product_image_wrapper">'
-
-    // product image
-    listItem += '<img src="' + pluginUrl + '/assets/img/' + product.image_name + '" alt="' + product.label + '" title="' + product.label + ' Bank Statement" border="0"/>'
-
-    // select options
-    listItem += '<div class="option_box">'
-
-    if (product.selection1) {
-      var options = product.selection1.options
-      // options
-      listItem += '<div class="statement_list">'
-      listItem += '<ul>'
-
-      $.each(options, function(childIndex) {
-        var idName = options[childIndex] + parentIndex + childIndex
-        listItem += '<li>'
-        listItem += '<input type="radio" id="' + idName + '" name="product_type" data-product-ref="' + parentIndex + childIndex + '">'
-        listItem += '<label for="' + idName + '">' + options[childIndex] + '</label>'
-        listItem += '<div class="check check_part2" style="border-width: 2px;"></div>'
-        listItem += '</li>'
-      })
-
-
-      listItem += '</ul>'
-      listItem += '</div>'
-    }
-
-    // next prev buttton
-    listItem += '<a href="#" class="btn btn-black text-uppercase btn-lg goBack2 back_step_2_btn">Go Back</a>'
-    listItem += '<a href="#" class="btn btn-danger text-uppercase btn-lg bankStatement2 next_step_4_btn">Next Step</a>'
-
-    listItem += '</div>'
-
-    listItem += '</div>'
-    listItem += '<h4>' + product.label + '</h4>'
-    listItem += '</div>'
-    listItem += '</li>'
-    return listItem
   }
 
   // Make start and end date field in last step

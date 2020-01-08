@@ -3,14 +3,12 @@
 #thirdStep,
 #lastStep,
 #deliveryAdress,
-.option_box {
+.wd_option_box,
+.wd_product_list {
   display: none;
 }
 
-#firstStep,
-#secondStep,
-#thirdStep,
-#lastStep {
+#firstStep {
   display: block;
 }
 
@@ -22,7 +20,7 @@ ul.state_list_tab.utility_list li, ul.state_list_tab.bank_list li {
   width: 25%;
 }
 
-.single_product .product_image_wrapper {
+.wd_single_product .wd_product_image_wrapper {
   position: relative;
   cursor: pointer;
   display: block;
@@ -30,20 +28,20 @@ ul.state_list_tab.utility_list li, ul.state_list_tab.bank_list li {
   border: #e8e8e8 3px solid;
 }
 
-.product_image_wrapper,
-.product_image_wrapper * {
+.wd_product_image_wrapper,
+.wd_product_image_wrapper * {
   transition: 0.2s;
 }
 
-.product_image_wrapper.selected {
+.wd_product_image_wrapper.selected {
   border-color: #d71920;
 }
 
-.product_image_wrapper img {
+.wd_product_image_wrapper img {
   border: 1px solid transparent;
 }
 
-.product_image_wrapper .has_error {
+.wd_product_image_wrapper .has_error {
   border: 1px solid #d71920;
 }
 
@@ -71,10 +69,10 @@ button:not(:disabled),
 }
 
 /* Option box */
-.option_box {
+.wd_option_box {
   position: absolute;
   left: -15px;
-  top: calc(100% + 6px);
+  top: calc(100% - 78px);
   width: max-content;
   background-color: #fff;
   padding: 25px 40px;
@@ -83,7 +81,15 @@ button:not(:disabled),
   z-index: 999999;
 }
 
-ul.state_list_tab li.single_product .option_box a {
+.wd_option_box h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+}
+
+ul.state_list_tab li.wd_single_product .wd_option_box a {
   display: inline-block;
   min-height: initial;
   border: 0 none;
@@ -91,7 +97,12 @@ ul.state_list_tab li.single_product .option_box a {
   font-size: 15px;
 }
 
-ul.state_list_tab li.single_product .option_box .statement_list li {
-  min-height: auto;
+ul.state_list_tab li.wd_single_product .wd_option_box .statement_list li {
   width: auto;
+  float: none;
+  min-height: 40px;
+}
+
+ul.state_list_tab li.wd_single_product .wd_option_box .statement_list li label {
+  padding-left: 25px;
 }

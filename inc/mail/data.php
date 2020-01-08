@@ -12,6 +12,7 @@
   // Third step
   $product_name = $_POST['product_name'];
   $product_image_url = $_POST['product_image_url'];
+  $product_type = $_POST['product_type'];
 
   /*
     Last step

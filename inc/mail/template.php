@@ -77,7 +77,7 @@ START_END;
                                 </tr>\r\n
                                 <tr>
                                     <td class="col1">Product Name: </td>
-                                    <td class="col2"><strong class="blue_dark">{$product_name}</strong></td>
+                                    <td class="col2"><strong class="blue_dark">{$product_name} - {$product_type}</strong></td>
                                 </tr>\r\n
 
                                 <tr>
