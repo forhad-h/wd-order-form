@@ -6,7 +6,7 @@ require_once dirname(__FILE__).'/lib/PHPMailer/src/Exception.php';
 require_once dirname(__FILE__)."/lib/PHPMailer/src/PHPMailer.php";
 require_once dirname(__FILE__)."/template/".$_POST['form_type'].".php";
 
-$emailFrom = isset($_POST['email']) ? $_POST['email'] : 'phpmailer@php.com';
+$emailFrom = !empty($_POST['email']) ? $_POST['email'] : 'phpmailer@email.com';
 $emailTo = $_POST['reciever_email'];
 
 $mail = new PHPMailer(TRUE);

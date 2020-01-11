@@ -39,6 +39,7 @@
     var item_value = $(this).val().split(',')
     $("#displayItemLabel").text(item_value[0] + " " + item_value[1])
     $('#totalPrice').text(item_value[2])
+    $('#wdSelectableAmount').val(item_value[0])
 
     // generate start and end date fields
     var singleMarkups = ''
@@ -107,7 +108,6 @@
     e.preventDefault()
 
     $('.wd_option_box').hide()
-    $(this).next('.wd_option_box').show()
 
     if ($(this).hasClass('hasSelection1')) {
       // if has selection option
@@ -126,13 +126,41 @@
     // display value in last step
     $('#displayProductName').text($('#wdProductName').val())
     $('#displayProductImage').attr('src', $('#wdBankImageUrl').val())
+
     $('.wd_product_image_wrapper img').removeClass('has_error')
-    $('.wd_product_image_wrapper').removeClass('selected')
-    $(this).addClass('selected')
+
+
+    $('.wd_product_image_wrapper').not('.wd_has_value').removeClass('selected')
+
+    if (!$(this).hasClass('wd_has_value')) {
+      // select process
+      $(this).addClass('selected')
+      $(this).next('.wd_option_box').show()
+    } else {
+      // deselect process
+
+      var ref = $(this).next('.wd_option_box').find('.wd_product_option').attr('data-product-ref')
+      var selectedAmount = parseInt($('#wdSelectedAmount').val())
+      var decreaseAmount = parseInt($(this).find('.wd_selected_product_amount').text())
+
+      $(this).find('.next_step_4_btn').hide()
+      $(this).next('.wd_option_box').find('.next_step_4_btn').hide()
+
+      // remove generated input element from product selection
+      $('#wdSelectedProducts').find("#wdSelectedProduct" + ref).remove()
+      if (selectedAmount > 0) {
+        $('#wdSelectedAmount').val(selectedAmount - decreaseAmount)
+      }
+
+      $(this).next('.wd_option_box').find('.wd_product_option').prop('checked', false)
+      $(this).find('.wd_selected_product_amount').text('')
+      $(this).removeClass('wd_has_value')
+      $(this).removeClass('selected')
+    }
 
   })
 
-  $('.wd_product_type').on('change', function() {
+  $('.wdob_bank_statements .wd_selection1 .wd_product_option').on('change', function() {
     // display value in last step
     $('#displayProductType').text($(this).val())
     $('#wdProductType').val($(this).val())
@@ -162,6 +190,62 @@
   $('.statement_list input[type=radio]').on('change', function() {
     $('.statement_list .check').css('border-width', '2px')
   })
+
+  /*
+    utility_bills
+  */
+  $('.wdob_utility_bills .wd_selection1 li').hide()
+
+  $('.wdpl_utility_bills').on('click', function() {
+    var selectableAmount = +$('#wdSelectableAmount').val()
+    $(this)
+      .next('.wdob_utility_bills')
+      .find('.wd_selection1 li')
+      .slice(0, selectableAmount)
+      .show();
+  })
+
+  $('.wdob_utility_bills .wd_selection1 .wd_product_option').on('change', function() {
+    // get reference number
+    var ref = $(this).attr('data-product-ref')
+    var title = $(this).parents('.wd_option_box').next('h4').text()
+    var selectableAmount = parseInt($('#wdSelectableAmount').val())
+    var currentVal = parseInt($(this).val())
+    var selectedAmount = parseInt($('#wdSelectedAmount').val())
+
+
+    $('#displaySelectableAmount').text(selectableAmount) // update amount in modal
+
+    $('.wdp_ref_' + ref).text($(this).val()) // update UI
+
+
+    if (selectableAmount < (selectedAmount + currentVal)) {
+      $('#maxSelectionAlert').modal()
+      $(this).prop('checked', false)
+      $(this).parents('.wd_option_box').prev('.wd_product_image_wrapper').find('.wd_selected_product_amount').text('')
+      $(this).parents('.wd_option_box').prev('.wd_product_image_wrapper').find('.wd_selected_product_amount').hide()
+      return false
+    }
+
+
+    $('#wdSelectedProducts')
+      .append('<input type="hidden" id="wdSelectedProduct' + ref + '" name="selected_product[]" value="' + currentVal + "," + title + '" />')
+    $('#wdSelectedAmount').val(selectedAmount + currentVal)
+
+    $(this).parents('.wd_option_box').prev('.wd_product_image_wrapper').addClass('wd_has_value')
+
+    $(this).parents('.wd_option_box').hide()
+
+    // hide or show next step button
+    if (selectableAmount === (selectedAmount + currentVal)) {
+      $('.ts_utility_bills').find('.next_step_4_btn').show()
+    } else {
+      $('.ts_utility_bills').find('.next_step_4_btn').hide()
+    }
+
+  })
+
+
 
 
   // Radio validation
@@ -193,11 +277,5 @@
 
     return item
   }
-
-
-  // // Manage form type
-  // var urlParams = new URLSearchParams(window.location.search)
-  // var formType = urlParams.get('wd_form_type')
-
 
 })(jQuery)
