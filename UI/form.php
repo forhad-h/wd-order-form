@@ -1,8 +1,12 @@
 <?php
     defined('ABSPATH') or die("Prevent direct access!");
 
+    // form type
+    $form_type = $_GET['form_type'];
+    $formated_form_type = ucwords(str_replace('_', ' ', $form_type));
+
     // Each form data
-    require_once WDF_PLUGIN_PATH.'inc/form-type-data.php';
+    require_once WDF_PLUGIN_PATH.'inc/form-type-data/'.$form_type.'.php';
     require_once WDF_PLUGIN_PATH.'inc/product-list/'.$form_type.'.php';
 ?>
 

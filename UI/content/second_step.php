@@ -16,7 +16,7 @@
               <li>-</li>
               <li>-</li>
             </ul>
-            <h2 class="firstStep_tittle"><span class="black_inner_capi">What type of bank do you require?</span></h2>
+            <h2 class="firstStep_tittle"><span class="black_inner_capi"><?= $step_title_2; ?></span></h2>
             <div class="clearfix m-5"></div>
             <div class="row">
                  <div class="col-lg-7 col-md-8 col-sm-12 offset-md-2">

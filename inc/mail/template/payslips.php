@@ -9,20 +9,24 @@ if(!function_exists('template')) {
     // include all parts of template
     include_once dirname(__FILE__)."/styles.php";
 
-    $startEndDateRow = '';
-    $delivery_address = $is_same_address == 'yes' ?  'Same as Above' : $delivery_address;
+    $payslip_info = '';
 
-    for($i = 0; $i < count($startDate); $i++) {
-      $startEndDateRow .= <<<START_END
-        <tr>
-            <td class="col1">Statement {$i} Starting Date: </td>
-            <td class="col2"><strong class="blue_dark">{$startDate[$i]}</strong></td>
-        </tr>\r\n
-        <tr>
-            <td class="col1">Statement {$i} Closing Date: </td>
-            <td class="col2"><strong class="blue_dark">{$endDate[$i]}</strong></td>
-        </tr>\r\n
-START_END;
+
+    for($i = 0; $i < count($wd_cond_title_field); $i++) {
+      $payslip_info .= <<<PAYSLIP_INFO
+      <tr>
+          <td class="col1">Payslip title: </td>
+          <td class="col2"><strong class="blue_dark">{$wd_cond_title_field[$i]}</strong></td>
+      </tr>\r\n
+      <tr>
+          <td class="col1">Payslip Date: </td>
+          <td class="col2"><strong class="blue_dark">{$payslip_date[$i]}</strong></td>
+      </tr>\r\n
+      <tr>
+          <td class="col1">Gross or Net pay: </td>
+          <td class="col2"><strong class="blue_dark">{$gross_pay[$i]}</strong></td>
+      </tr>\r\n
+PAYSLIP_INFO;
     }
 
 
@@ -80,6 +84,7 @@ START_END;
                                     <td class="col2"><strong class="blue_dark">{$product_name} - {$product_type}</strong></td>
                                 </tr>\r\n
 
+
                                 <tr>
                                     <td class="col1"><h5>Personal Information</h5></td>
                                     <td class="col2"></td>
@@ -90,68 +95,35 @@ START_END;
                                 </tr>\r\n
                                 <tr>
                                     <td class="col1">Name: </td>
-                                    <td class="col2"><strong class="blue_dark">{$title} {$name}</strong></td>
+                                    <td class="col2"><strong class="blue_dark">{$name_title} {$name}</strong></td>
                                 </tr>\r\n
                                 <tr>
-                                    <td class="col1">Address: </td>
-                                    <td class="col2"><strong class="blue_dark">{$address}</strong></td>
+                                    <td class="col1">Company on Payslip: </td>
+                                    <td class="col2"><strong class="blue_dark">{$company}</strong></td>
+                                </tr>\r\n
+                                <tr>
+                                    <td class="col1">NI Number: </td>
+                                    <td class="col2"><strong class="blue_dark">{$ni_no}</strong></td>
+                                </tr>\r\n
+                                <tr>
+                                    <td class="col1">Payment Period: </td>
+                                    <td class="col2"><strong class="blue_dark">{$paymentperiod}</strong></td>
                                 </tr>\r\n
                                 <tr>
                                     <td class="col1">Delivery Address: </td>
-                                    <td class="col2"><strong class="blue_dark">{$delivery_address}</strong></td>
+                                    <td class="col2"><strong class="blue_dark">{$payslip_address}</strong></td>
+                                </tr>\r\n
+                                <tr>
+                                    <td class="col1">Which figures are you providing: </td>
+                                    <td class="col2"><strong class="blue_dark">{$figures}</strong></td>
                                 </tr>\r\n
 
                                 <tr>
-                                    <td class="col1"><h5>Bank Information</h5></td>
+                                    <td class="col1"><h5>Payslip information</h5></td>
                                     <td class="col2"></td>
                                 </tr>\r\n
-                                <tr>
-                                    <td class="col1">Branch Address: </td>
-                                    <td class="col2"><strong class="blue_dark">{$BAddress}</strong></td>
-                                </tr>\r\n
-                                <tr>
-                                    <td class="col1">Bank Account Number: </td>
-                                    <td class="col2"><strong class="blue_dark">{$AccountNumber}</strong></td>
-                                </tr>\r\n
-                                <tr>
-                                    <td class="col1">Bank Account Sort Code: </td>
-                                    <td class="col2"><strong class="blue_dark">{$AccountSortCode} {$AccountSortCode2} {$AccountSortCode3}</strong></td>
-                                </tr>\r\n
-                                <tr>
-                                    <td class="col1">IBAN: </td>
-                                    <td class="col2"><strong class="blue_dark">{$IBAN} {$IBAN2} {$IBAN3} {$IBAN4} {$IBAN5} {$IBAN6}</strong></td>
-                                </tr>\r\n
-                                <tr>
-                                    <td class="col1">BIC/SWIFT: </td>
-                                    <td class="col2"><strong class="blue_dark">{$BIC_SWIFT}</strong></td>
-                                </tr>\r\n
-                                <tr>
-                                    <td class="col1">Starting Statement Number/Page Number: </td>
-                                    <td class="col2"><strong class="blue_dark">{$StatementNumber}</strong></td>
-                                </tr>\r\n
-                                {$startEndDateRow}
+                                {$payslip_info}
 
-
-                                <tr>
-                                    <td class="col1">Overdraft Limit: </td>
-                                    <td class="col2"><strong class="blue_dark">{$Overdraft}</strong></td>
-                                </tr>\r\n
-                                <tr>
-                                    <td class="col1">Starting Balance: </td>
-                                    <td class="col2"><strong class="blue_dark">{$StartingBalance}</strong></td>
-                                </tr>\r\n
-                                <tr>
-                                    <td class="col1">End Balance: </td>
-                                    <td class="col2"><strong class="blue_dark">{$EndBalance}</strong></td>
-                                </tr>\r\n
-                                <tr>
-                                    <td class="col1">Random Transactions: </td>
-                                    <td class="col2"><strong class="blue_dark">{$RandomTransactions}</strong></td>
-                                </tr>\r\n
-                                <tr>
-                                    <td class="col1">Own Transactions: </td>
-                                    <td class="col2"><strong class="blue_dark">{$OwnTransactions}</strong></td>
-                                </tr>\r\n
 
                                 <tr>
                                     <td class="col1"><h5>Other</h5></td>

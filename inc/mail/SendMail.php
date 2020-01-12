@@ -26,9 +26,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       $mail->Body = emailTemplate();
 
       // Attachments
-      $file = $_FILES['attachment'];
-      if($file['tmp_name']) {
-          $mail->addAttachment($file['tmp_name'], $file['name']);
+      if(isset($_FILES['attachment'])) {
+        $file = $_FILES['attachment'];
+        if($file['tmp_name']) {
+            $mail->addAttachment($file['tmp_name'], $file['name']);
+        }
       }
 
       /* Finally send the mail. */

@@ -2,6 +2,7 @@
 /*
    Data for product list
 */
+$max_options = 10;
 $product_list = [
     [
        [
@@ -168,15 +169,47 @@ $product_list = [
        ],],
     ],
     [
-       ['label' => "British Gas", 'image_name' => "British Gas Business.jpg",],
-       ['label' => "BT", 'image_name' => "BT Business.jpg",],
-       ['label' => "EDF", 'image_name' => "EDF Business.jpg",],
-       ['label' => "SSE Airtricity", 'image_name' => "no-img-thumb.jpg",],
+       ['label' => "British Gas", 'image_name' => "British Gas Business.jpg",
+       'selection1' => [
+         'title' => 'Please select number of Utility Bills.',
+         'options' => ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+       ],],
+       ['label' => "BT", 'image_name' => "BT Business.jpg",
+       'selection1' => [
+         'title' => 'Please select number of Utility Bills.',
+         'options' => ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+       ],],
+       ['label' => "EDF", 'image_name' => "EDF Business.jpg",
+       'selection1' => [
+         'title' => 'Please select number of Utility Bills.',
+         'options' => ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+       ],],
+       ['label' => "SSE Airtricity", 'image_name' => "no-img-thumb.jpg",
+       'selection1' => [
+         'title' => 'Please select number of Utility Bills.',
+         'options' => ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+       ],],
     ],
     [
-      ['label' => "British Gas", 'image_name' => "British Gas Business.jpg",],
-      ['label' => "BT", 'image_name' => "BT Business.jpg",],
-      ['label' => "EDF", 'image_name' => "EDF Business.jpg",],
-      ['label' => "SSE Airtricity", 'image_name' => "no-img-thumb.jpg",],
+      ['label' => "British Gas", 'image_name' => "British Gas Business.jpg",
+      'selection1' => [
+        'title' => 'Please select number of Utility Bills.',
+        'options' => ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+      ],],
+      ['label' => "BT", 'image_name' => "BT Business.jpg",
+      'selection1' => [
+        'title' => 'Please select number of Utility Bills.',
+        'options' => ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+      ],],
+      ['label' => "EDF", 'image_name' => "EDF Business.jpg",
+      'selection1' => [
+        'title' => 'Please select number of Utility Bills.',
+        'options' => ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+      ],],
+      ['label' => "SSE Airtricity", 'image_name' => "no-img-thumb.jpg",
+      'selection1' => [
+        'title' => 'Please select number of Utility Bills.',
+        'options' => ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+      ],],
     ],
   ];

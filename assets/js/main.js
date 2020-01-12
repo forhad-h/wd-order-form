@@ -1,4 +1,7 @@
 !(function($) {
+  // get form type
+  var urlParams = new URL(window.location.href)
+  var formType = urlParams.searchParams.get('form_type')
   /*
     Date Picker
   */
@@ -18,8 +21,10 @@
   })
 
   /*
-    In first step
+      Common
   */
+
+  /* In first step */
   $('#nextStep2Btn').on('click', function(e) {
     e.preventDefault()
 
@@ -52,9 +57,7 @@
     $('#startEndDate').append(singleMarkups)
   })
 
-  /*
-    In second step
-  */
+  /* In second step */
   $('#backStep1Btn').on('click', function(e) {
     e.preventDefault()
     $('#secondStep').hide()
@@ -80,9 +83,8 @@
 
   })
 
-  /*
-    In third step
-  */
+
+  /* In third step */
   $('.back_step_2_btn').on('click', function(e) {
     e.preventDefault()
     $('#thirdStep').hide()
@@ -95,13 +97,71 @@
       return false
     }
 
-    if ($('#wdHasSelection1').val() === 'true' && !$('#wdProductType').val()) {
-      $('#wdAccountTypeAlert').modal()
-      return false
+    if (formType === 'bank_statements') {
+      if ($('#wdHasSelection1').val() === 'true' && !$('#wdProductType').val()) {
+        $('#wdAccountTypeAlert').modal()
+        return false
+      }
     }
+
+    // show conditional fields with corresponding title
+    if (formType === 'utility_bills') {
+      if ($('#wdSelectedProducts').length) {
+        var totalItems = 0
+        var titleArr = ['']
+        $('#wdSelectedProducts').find('input').each(function(index, elm) {
+          var value = $(this).val().split(',')
+          totalItems += parseInt(value[0])
+
+          for (var j = 1; j <= value[0]; j++) {
+            titleArr.push(value[1])
+          }
+        })
+
+        $('.wd_conditional_single_field').slice(totalItems).remove()
+
+        for (var i = 1; i <= totalItems; i++) {
+          $('.wd_conditional_field_' + i).find('.wd_cond_title').text(titleArr[i])
+          $('.wd_conditional_field_' + i).find('.wd_cond_title_field').val(
+            $('.wd_conditional_field_' + i).find('.wd_cond_title_field').val() + " " + titleArr[i]
+          )
+
+        }
+
+      }
+    }
+
+    if (formType === 'payslips') {
+      var totalItems = parseInt($('#wdSelectableAmount').val())
+      $('.wd_conditional_single_field').slice(totalItems).remove()
+    }
+
+
     $('#thirdStep').hide()
     $('#lastStep').show()
   })
+
+  /*
+     In last step
+  */
+  $('#backStep3Btn').on('click', function(e) {
+    e.preventDefault()
+    $('#lastStep').hide()
+    $('#thirdStep').show()
+  })
+
+  $('#isSameAddress').on('change', function() {
+    if (!$(this).prop('checked')) {
+      $('#deliveryAdress').show()
+    } else {
+      $('#deliveryAdress').hide()
+    }
+  })
+
+
+  /*
+   bank_statements
+  */
 
   // manage select option box
   $('.wd_product_image_wrapper').on('click', function(e) {
@@ -166,23 +226,7 @@
     $('#wdProductType').val($(this).val())
   })
 
-  /*
-     In last step
-  */
 
-  $('#backStep3Btn').on('click', function(e) {
-    e.preventDefault()
-    $('#lastStep').hide()
-    $('#thirdStep').show()
-  })
-
-  $('#isSameAddress').on('change', function() {
-    if (!$(this).prop('checked')) {
-      $('#deliveryAdress').show()
-    } else {
-      $('#deliveryAdress').hide()
-    }
-  })
 
   /*
      remove error effect
@@ -246,6 +290,9 @@
   })
 
 
+  /*
+     Necessary functions
+  */
 
 
   // Radio validation

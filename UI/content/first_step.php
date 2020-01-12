@@ -16,7 +16,7 @@
                 <li>-</li>
                 <li>-</li>
               </ul>
-              <h2 class="firstStep_tittle"><span class="black_inner_capi">How many <?= $formated_form_type;?> do you require?</span></h2>
+              <h2 class="firstStep_tittle"><span class="black_inner_capi"><?= $step_title_1;?></span></h2>
               <div class="clearfix"></div>
 
               <?php if($help_info1 || $help_info2) : ?>
@@ -38,7 +38,8 @@
                                $kebabLabel = $field['amount'].'-'.$field['label'];
                                $kebabLabel = str_replace(' ', '-', $kebabLabel);
 
-                               $amount = $field['label'] != 'Other' ? $field['amount'] : '';
+                               $amount = $field['showAmount'] !== false ? $field['amount'] : '';
+
                                $label = $amount.' '.$field['label'];
                           ?>
                             <li class="<?= $index === 0 ? 'summery-sheet' : ''; ?>">

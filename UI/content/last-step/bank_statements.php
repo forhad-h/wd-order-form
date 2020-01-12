@@ -19,7 +19,7 @@
                   <li class="active">-</li>
                   <li class="active">-</li>
                 </ul>
-                <h2 class="firstStep_tittle"><span class="black_inner_capi">Fill out the details needed</span></h2>
+                <h2 class="firstStep_tittle"><span class="black_inner_capi"><?= $step_title_4; ?></span></h2>
                 <div class="step3_top_icon"><i class="fa fa-question-circle"></i></div>
                 <p>If you are unsure what information to type, please click the question mark icon next to the field</p>
                 <div class="clearfix m-5"></div>

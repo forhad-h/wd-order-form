@@ -6,7 +6,8 @@
 .wd_option_box,
 .wd_product_list,
 .wd_selected_product_amount,
-.ts_utility_bills .next_step_4_btn {
+.ts_utility_bills .next_step_4_btn,
+.wd_conditional_single_field {
   display: none;
 }
 
@@ -14,8 +15,8 @@
 #secondStep,
 #thirdStep,
 #lastStep,
-#deliveryAdress,
-.wd_product_list {
+.wd_product_list,
+.wd_conditional_single_field {
   display: block;
 }
 
@@ -128,4 +129,23 @@ ul.state_list_tab li.wd_single_product .wd_option_box .statement_list li label {
 
 .wdpl_utility_bills.selected .wd_selected_product_amount {
   display: block;
+}
+
+/* Payslips*/
+ul.state_list_tab li a.qustion {
+  width: 20px;
+  height: 20px;
+  min-height: 20px;
+  display: inline;
+  border: 0 none;
+  margin-left: 5px;
+}
+
+.ts_payslips ul.state_list_tab.bank_list li {
+  width: 50%;
+}
+
+.ts_payslips ul.state_list_tab li img {
+  max-height: 345px;
+  height: 345px;
 }

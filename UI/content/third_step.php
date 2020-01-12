@@ -19,7 +19,7 @@
                      <li>-</li>
                   </ul>
 
-                  <h2 class="firstStep_tittle"><span class="black_inner_capi">Which bank do you require?</span></h2>
+                  <h2 class="firstStep_tittle"><span class="black_inner_capi"> <?= $step_title_3; ?> </span></h2>
 
                   <div class="row">
 
