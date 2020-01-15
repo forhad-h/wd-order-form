@@ -2,7 +2,6 @@
 /*
    Data for product list
 */
-$max_options = 10;
 $product_list = [
     [
        [

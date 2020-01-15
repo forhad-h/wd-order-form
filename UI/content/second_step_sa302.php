@@ -1,6 +1,6 @@
 <?php defined('ABSPATH') or die("Prevent direct access!"); ?>
 <!----------- first step---------->
-<div id="firstStep" class="ts_<?= $form_type; ?>">
+<div id="secondStep" class="ts_<?= $form_type; ?>">
   <div class="first_box_wrapper">
     <div class="container">
         <div class="first_box_arch_top"></div>
@@ -31,13 +31,13 @@
               <div class="clearfix clear40px visible-lg visible-md visible-sm"></div>
               <div class="row">
                 <div class="col-lg-7 col-md-8 col-sm-12 offset-md-2">
-                  <div class="statement_list summarysheet_order radio_btn_required item_list">
-                        <?php if(isset($list_title1) && !empty($list_title1)) {?>
-                            <h3 class="text-left" style="margin:0; padding:0; margin-bottom:20px;"><?= $list_title1;?></h3>
+                  <div class="statement_list summarysheet_order radio_btn_required item_list2">
+                        <?php if(isset($list_title2) && !empty($list_title2)) {?>
+                            <h3 class="text-left" style="margin:0; padding:0; margin-bottom:20px;"><?= $list_title2;?></h3>
                         <?php } ?>
                         <ul>
                           <?php
-                             foreach($item_fields as $index => $field) {
+                             foreach($item_fields_2 as $index => $field) {
                                $kebabLabel = $field['amount'].'-'.$field['label'];
                                $kebabLabel = str_replace(' ', '-', $kebabLabel);
 
@@ -46,7 +46,7 @@
                                $label = $amount.' '.$field['label'];
                           ?>
                             <li class="<?= $index === 0 ? 'summery-sheet' : ''; ?>">
-                              <input type="radio" id="<?= $kebabLabel;?>" name="item" value="<?= $field['amount'].','.$field['label'].','.$field['price']; ?>">
+                              <input type="radio" id="<?= $kebabLabel;?>" name="item2" value="<?= $field['amount'].','.$field['label'].','.$field['price']; ?>">
                               <label for="<?= $kebabLabel;?>" price="<?= $field['price']?>" style="text-align:left;"><?= $label; ?><br></label>
                               <div class="check"></div>
                               <span class="sheet_right"><?= $index !== count($item_fields) - 1 ? '£'.$field['price'] : $field['price'];?></span>
@@ -56,8 +56,8 @@
                         </ul>
                       </div>
                   <div class="text-left">
-                    <a href="<?= get_theme_mod("wd_category_page_url_field"); ?>" class="btn btn-black text-uppercase btn-lg">Back to category</a>
-                    <a href="#" id="nextStep2Btn" class="btn btn-danger text-uppercase btn-lg">Next Step</a>
+                      <a href="#" class="btn btn-black text-uppercase btn-lg goBack_Payslips" id="backStep1Btn">Go Back</a>
+                      <a href="#" class="btn btn-danger text-uppercase btn-lg Payslips_part2" id="nextStep3Btn">Next Step</a>
                   </div>
                 </div>
                 <div class="col-sm-4">&nbsp;</div>

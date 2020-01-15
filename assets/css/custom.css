@@ -7,10 +7,18 @@
 .wd_product_list,
 .wd_selected_product_amount,
 .ts_utility_bills .next_step_4_btn,
-.wd_conditional_single_field {
+.ts_other_documents .next_step_4_btn {
   display: none;
 }
 
+/*
+
+#secondStep,
+#thirdStep,
+#lastStep,
+.wd_product_list,
+.wd_conditional_single_field
+*/
 #firstStep,
 #secondStep,
 #thirdStep,
@@ -127,7 +135,8 @@ ul.state_list_tab li.wd_single_product .wd_option_box .statement_list li label {
   font-size: 5rem;
 }
 
-.wdpl_utility_bills.selected .wd_selected_product_amount {
+.wdpl_utility_bills.selected .wd_selected_product_amount,
+.wdpl_other_documents.selected .wd_selected_product_amount {
   display: block;
 }
 
@@ -141,11 +150,31 @@ ul.state_list_tab li a.qustion {
   margin-left: 5px;
 }
 
-.ts_payslips ul.state_list_tab.bank_list li {
+.ts_payslips ul.state_list_tab.bank_list li,
+.ts_p45 ul.state_list_tab.bank_list li {
   width: 50%;
 }
 
 .ts_payslips ul.state_list_tab li img {
   max-height: 345px;
   height: 345px;
+}
+
+.ts_p60 ul.state_list_tab.bank_list li {
+  width: 280px;
+  min-height: auto;
+  margin: 0 auto;
+  float: none;
+  display: inline-block;
+}
+
+.ts_p60 ul.state_list_tab li img,
+.ts_p45 ul.state_list_tab li img {
+  height: 350px;
+  max-height: 350px;
+  width: 280px;
+}
+
+.ts_p45 ul.state_list_tab li h4 small {
+  display: block;
 }

@@ -1,9 +1,9 @@
 <?php
 
 $step_title_1 = 'How many bank statements do you require?';
-$step_title_2 = 'What type of bank do you require?'
-$step_title_3 = 'Which bank do you require?'
-$step_title_4 = 'Fill out the details needed'
+$step_title_2 = 'What type of bank do you require?';
+$step_title_3 = 'Which bank do you require?';
+$step_title_4 = 'Fill out the details needed';
 
 $help_info1 = 'Each statement has 1 - 2 page of transactions.';
 $help_info2 = 'Each statement can cover between 1 - 3 months.';

@@ -90,43 +90,67 @@
             <div class="white_box_wrapper minus_padding_top">
               <div class="style_box">
                 <div class="main_hedding sky_blue_bg">
-                  <h2><?= $sequence; ?> <span class="wd_cond_title"></span></h2>
-                  <input type="hidden" value="<?= $sequence; ?> " name="wd_cond_title_field[]" class="wd_cond_title_field" />
+                  <h2><?= $sequence; ?> <span class="wd_cond_title">P60 Document</span></h2>
+                  <input type="hidden" value="<?= $sequence; ?> P60 Document" name="wd_cond_title_field[]" class="wd_cond_title_field" />
                 </div>
                 <div class="row">
                   <div class="col-xl-7 col-lg-10 col-md-10 col-sm-12 offset-md-1">
                     <div class="statement_form">
-
-                      <div class="row">
-                        <div class="col-sm-12 col-md-9 col-lg-9 col-xl-9">
-                          <label for="utility_bill_date">Utility Bill Date</label>
-                          <input type="text" size="32" name="utility_bill_date[]" id="utility_bill_date" class="showcalend datepicker form-control" />
+                        <div class="row">
+                          <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5">
+                            <label>Year of P60</label>
+                            <select class="form-control valid" name="p60y[]" aria-invalid="false">
+                              <option value="2019">2019</option>
+                              <option value="2018">2018</option>
+                              <option value="2017">2017</option>
+                              <option value="2016">2016</option>
+                              <option value="2015">2015</option>
+                              <option value="2014">2014</option>
+                            </select>
+                          </div>
                         </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                          <label for="title">Title</label>
-                          <select name="utility_bill_name_title[]" id="title" class="form-control">
-                            <option value="Mr">Mr</option>
-                            <option value="Ms">Ms</option>
-                            <option value="Mrs">Mrs</option>
-                            <option value="Miss">Miss</option>
-                            <option value="Dr">Dr</option>
-                          </select>
+                        <label>Works/Payroll Number <a class="qustion" href="javascript:void(0);" data-container="body" data-toggle="popover" data-placement="top" data-content="If you leave this blank we will use a random number." data-original-title="" title=""><i class="fa fa-question-circle"></i></a></label>
+                        <input type="text" name="works_payroll[]" class="form-control">
+                        <label for="ni_no">NI Number <a class="qustion" href="javascript:void(0);" data-container="body" data-toggle="popover" data-placement="top" data-content="This is made up of 9 digits consisting of numbers and letters. Usually starting with 2 letters." data-original-title="" title=""><i class="fa fa-question-circle"></i></a></label>
+                        <input type="text" name="ni_no[]" class="form-control">
+                        <div class="row">
+                          <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5">
+                        		<label style="white-space:nowrap">Previous pay this tax year <a class="qustion" href="javascript:void(0);" data-container="body" data-toggle="popover" data-placement="top" data-content="This is the amount of any other taxable employment income you have earned during the tax year in question." data-original-title="" title=""><i class="fa fa-question-circle"></i></a></label>
+                        <input type="text" name="prev_pay[]" class="form-control">
+                        	</div>
                         </div>
-                      </div>
-
-                      <label for="name">Name as it appears on Utility Bill</label>
-                      <input size="32" name="utility_bill_name[]" id="name" class="form-control" type="text">
-
-                      <label for="billDelAddress">Delivery address as it appears on Utility Bill</label>
-                      <textarea name="bill_del_address[]" id="billDelAddress" class="form-control" rows="4"></textarea>
-
-                      <label for="numberReference"> Customer Number/Reference <a class="qustion" href="javascript:void(0);" data-container="body" data-toggle="popover" data-placement="top" data-content="If you leave this blank we will use a random number." data-original-title="" title=""><i class="fa fa-question-circle"></i></a></label>
-                      <input id="numberReference" class="form-control" size="32" name="number_reference[]" type="text">
-
-
+                        <label>Which figures are you providing below <a class="qustion" href="javascript:void(0);" data-container="body" data-toggle="popover" data-placement="top" data-content="Check this carefully as we can not change it once completed." data-original-title="" title=""><i class="fa fa-question-circle"></i></a></label>
+                        <select name="figures[]" class="form-control">
+                          <option value="" selected=""></option>
+                          <option value="Gross Pay (Before Tax)">Gross Pay (Before Tax)</option>
+                          <option value="Net Pay(After Tax)">Net Pay(After Tax)</option>
+                        </select>
+                        <div class="row">
+                          <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5">
+                        		<label style="white-space:nowrap">Gross or Net Pay this Year <a class="qustion" href="javascript:void(0);" data-container="body" data-toggle="popover" data-placement="top" data-content="This figure is from April 6th to April 5th." data-original-title="" title=""><i class="fa fa-question-circle"></i></a></label>
+                        		<input type="text" name="gross_pay[]" class="form-control">
+                        		<label for="taxcode">Tax Code</label>
+                        		<input type="text" name="taxcode[]" class="form-control">
+                        	</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                            <label>Title</label>
+                            <select name="title[]" class="form-control">
+                              <option value="Mr">Mr</option>
+                              <option value="Ms">Ms</option>
+                              <option value="Mrs">Mrs</option>
+                              <option value="Miss">Miss</option>
+                              <option value="Dr">Dr</option>
+                            </select>
+                          </div>
+                        </div>
+                        <label>Name as it appears on P60</label>
+                        <input type="text" size="32" name="name_p60[]" class="form-control">
+                        <label>Address as it appears on P60</label>
+                        <textarea cols="26" rows="5" name="address_p60[]" class="form-control" spellcheck="false"></textarea>
+                        <label>Employers Full Name and Address</label>
+                        <textarea cols="26" rows="5" name="emp_name_add[]" class="form-control" spellcheck="false"></textarea>
                   </div>
                 </div>
               </div>

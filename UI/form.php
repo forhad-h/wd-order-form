@@ -19,7 +19,14 @@
       <input type="hidden" name="thank_you_page" value="<?= get_theme_mod('wd_thank_you_page_url_field');?>" />
 
       <?php include_once WDF_PLUGIN_PATH."UI/content/first_step.php"; ?>
-      <?php include_once WDF_PLUGIN_PATH."UI/content/second_step.php"; ?>
+      <?php
+        if($form_type !== 'p45' && $form_type !== 'other_documents' && $form_type !== 'sa302') {
+            include_once WDF_PLUGIN_PATH."UI/content/second_step.php";
+        }
+        if($form_type === 'sa302') {
+          include_once WDF_PLUGIN_PATH."UI/content/second_step_sa302.php";
+        }
+      ?>
       <?php include_once WDF_PLUGIN_PATH."UI/content/third_step.php"; ?>
       <?php include_once WDF_PLUGIN_PATH."UI/content/last-step/".$form_type.".php"; ?>
   </form>

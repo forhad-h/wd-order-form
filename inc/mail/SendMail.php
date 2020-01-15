@@ -6,7 +6,7 @@ require_once dirname(__FILE__).'/lib/PHPMailer/src/Exception.php';
 require_once dirname(__FILE__)."/lib/PHPMailer/src/PHPMailer.php";
 require_once dirname(__FILE__)."/template/".$_POST['form_type'].".php";
 
-$emailFrom = !empty($_POST['email']) ? $_POST['email'] : 'phpmailer@email.com';
+$emailFrom = $_POST['reciever_email'];
 $emailTo = $_POST['reciever_email'];
 
 $mail = new PHPMailer(TRUE);
@@ -17,11 +17,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   try{
       $mail->isHTML(true);
       // Set the mail sender.
-      $mail->setFrom($emailFrom, 'Company name');
+      $mail->setFrom($emailFrom, 'Order Info.');
       // Add a recipient.
       $mail->addAddress($emailTo);
       // Set the subject.
-      $mail->Subject = 'Subject goes here';
+      $mail->Subject = 'Customer order requirements';
       // Set the mail message body.
       $mail->Body = emailTemplate();
 

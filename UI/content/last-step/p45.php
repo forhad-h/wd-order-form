@@ -12,7 +12,7 @@
             <div class="first_box_arch_bottom"></div>
             <div class="white_box_wrapper">
               <div class="step_text">
-                <div class="step_heading">STEP 4 (of 4)</div>
+                <div class="step_heading">STEP 3 (of 3)</div>
                 <ul class="step_blt">
                   <li class="active">-</li>
                   <li class="active">-</li>
@@ -47,8 +47,8 @@
                           <label for="text">E-mail</label>
                           <input name="email" id="email" class="form-control" type="text">
 
-                          <label for="delNameAddr">Delivery Name and Address</label>
-                          <textarea name="del_name_address" id="delNameAddr" class="form-control" rows="4"></textarea>
+                          <label for="delAddr">Delivery Address</label>
+                          <textarea name="delAddress" id="delAddr" class="form-control" rows="4"></textarea>
 
                         </div>
 
@@ -64,25 +64,7 @@
         </div>
 
 
-        <?php
-            for($i=1; $i <= $max_options; $i++) {
-              $sequence = '';
-              switch($i) {
-                case 1:
-                   $sequence = $i.'st';
-                   break;
-                case 2:
-                   $sequence = $i.'nd';
-                   break;
-                case 3:
-                   $sequence = $i.'rd';
-                   break;
-                default:
-                   $sequence = $i.'th';
-              }
-
-        ?>
-        <div class="big_box_wrapper wd_conditional_single_field wd_conditional_field_<?= $i; ?>">
+        <div class="big_box_wrapper wd_conditional_single_field wd_conditional_field">
           <div class="container">
             <div class="big_box_arch_top"></div>
             <div class="big_box_arch_bottom_blue"></div>
@@ -90,42 +72,70 @@
             <div class="white_box_wrapper minus_padding_top">
               <div class="style_box">
                 <div class="main_hedding sky_blue_bg">
-                  <h2><?= $sequence; ?> <span class="wd_cond_title"></span></h2>
-                  <input type="hidden" value="<?= $sequence; ?> " name="wd_cond_title_field[]" class="wd_cond_title_field" />
+                  <h2><span class="wd_cond_title">P60 Document</span></h2>
                 </div>
                 <div class="row">
                   <div class="col-xl-7 col-lg-10 col-md-10 col-sm-12 offset-md-1">
                     <div class="statement_form">
 
+                      <label for="old_employer_reference">Old Employer Reference Number</label>
+                      <input type="text" name="old_employer_reference" id="old_employer_reference" class="form-control">
+
+                      <label for="old_ni_number">NI Number <a class="qustion" href="javascript:void(0);" data-container="body" data-toggle="popover" data-placement="top" data-content="This is made up of 9 digits consisting of numbers and letters. Usually starting with 2 letters." data-original-title="" title=""><i class="fa fa-question-circle"></i></a></label>
+                      <input type="text" name="old_ni_number" id="old_ni_number" class="form-control">
+
+
                       <div class="row">
                         <div class="col-sm-12 col-md-9 col-lg-9 col-xl-9">
-                          <label for="utility_bill_date">Utility Bill Date</label>
-                          <input type="text" size="32" name="utility_bill_date[]" id="utility_bill_date" class="showcalend datepicker form-control" />
+                          <label for="old_leavingdate">Leaving Date</label>
+                          <input type="text" size="32" name="old_leavingdate" id="old_leavingdate" class="showcalend datepicker form-control" />
                         </div>
                       </div>
+
+                      <label for="old_taxcodeleavingdate" style="white-space:nowrap;">Tax Code at Leaving Date</label>
+                      <input type="text" size="32" name="old_taxcodeleavingdate" id="old_taxcodeleavingdate" class="form-control">
+
+                      <label for="old_todaypay" style="white-space:nowrap;">Total Pay in this Employment</label>
+                      <input type="text" name="old_todaypay" id="old_todaypay" class="form-control">
+
+                      <label for="old_works_payrool" style="white-space:nowrap;">Works/Payroll Number</label>
+                      <input type="text" name="old_works_payrool" id="old_works_payrool" class="form-control">
+
 
                       <div class="row">
-                        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                          <label for="title">Title</label>
-                          <select name="utility_bill_name_title[]" id="title" class="form-control">
-                            <option value="Mr">Mr</option>
-                            <option value="Ms">Ms</option>
-                            <option value="Mrs">Mrs</option>
-                            <option value="Miss">Miss</option>
-                            <option value="Dr">Dr</option>
-                          </select>
+                        <div class="col-sm-12 col-md-9 col-lg-9 col-xl-9">
+                          <label for="old_datebirth">Date of Birth</label>
+                          <input type="text" size="32" name="old_datebirth" id="old_datebirth" class="showcalend datepicker form-control" />
                         </div>
                       </div>
 
-                      <label for="name">Name as it appears on Utility Bill</label>
-                      <input size="32" name="utility_bill_name[]" id="name" class="form-control" type="text">
+                      <label for="old_fullname">Old Employer's Full Name</label>
+                      <input type="text" name="old_fullname" id="old_fullname" class="form-control">
 
-                      <label for="billDelAddress">Delivery address as it appears on Utility Bill</label>
-                      <textarea name="bill_del_address[]" id="billDelAddress" class="form-control" rows="4"></textarea>
+                      <label for="old_address">Old Employer's Full Address</label>
+                      <textarea cols="26" rows="5" name="old_address" id="old_address" class="form-control" spellcheck="false"></textarea>
 
-                      <label for="numberReference"> Customer Number/Reference <a class="qustion" href="javascript:void(0);" data-container="body" data-toggle="popover" data-placement="top" data-content="If you leave this blank we will use a random number." data-original-title="" title=""><i class="fa fa-question-circle"></i></a></label>
-                      <input id="numberReference" class="form-control" size="32" name="number_reference[]" type="text">
+                      <div class="row">
+                        <div class="col-sm-12 col-md-9 col-lg-9 col-xl-9">
+                          <label for="old_dateofp45">Date of P45</label>
+                          <input type="text" size="32" name="old_dateofp45" id="old_dateofp45" class="showcalend datepicker form-control" />
+                        </div>
+                      </div>
 
+                      <label for="old_title">Title</label>
+                      <select name="old_title" id="old_title" class="form-control">
+                        <option value="Mr">Mr</option>
+                        <option value="Ms">Ms</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Miss">Miss</option>
+                        <option value="Dr">Dr</option>
+                      </select>
+
+                      <label for="old_nameddress">Name as it appears on P45</label>
+                      <input type="text" name="old_name" id="old_name" class="form-control">
+
+                      <label for="old_fulladdress">Address as it appears on P45</label>
+                      <textarea cols="26" rows="5" name="old_fulladdress" id="old_fulladdress" class="form-control" spellcheck="false"></textarea>
 
                   </div>
                 </div>
@@ -134,7 +144,6 @@
             </div>
           </div>
         </div>
-        <?php } ?>
 
 
 

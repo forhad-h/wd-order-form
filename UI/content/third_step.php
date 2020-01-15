@@ -10,8 +10,11 @@
          <div class="white_box_wrapper">
             <div class="style_box">
                <div class="step_text">
-
-                  <div class="step_heading">STEP 3 (of 4)</div>
+                 <?php
+                    $form_step_in_3rd = $form_type !== 'p45' && $form_type !== 'other_documents' ? '3' : '2';
+                    $form_total_step_in_3rd = $form_type !== 'p45' && $form_type !== 'other_documents' ? '4' : '3';
+                 ?>
+                  <div class="step_heading">STEP <?= $form_step_in_3rd; ?> (of <?= $form_total_step_in_3rd; ?>)</div>
                   <ul class="step_blt">
                      <li class="active">-</li>
                      <li class="active">-</li>
@@ -35,12 +38,12 @@
                                      foreach($innerList as $listIndex => $data ) {
                                        $hasSelection1 = array_key_exists('selection1', $data);
                                  ?>
-                                 <li class="wd_single_product">
+                                 <li class="wd_single_product" data-ref="<?= $listIndex;?>">
                                    <div class="zoom_thumb">
                                      <a href="#"><i class="fa fa-search"></i></a>
                                    </div>
                                    <div>
-                                     <div class="wd_product_image_wrapper wdpl_<?= $form_type; ?>  <?= $hasSelection1 ? 'hasSelection1' : '; '?>">
+                                     <div class="wd_product_image_wrapper wdpl_<?= $form_type; ?>  <?= $hasSelection1 ? 'hasSelection1' : ''; ?>">
                                        <img src="<?= WDF_PLUGIN_URL; ?>/assets/img/<?= $data['image_name'];?>" alt="<?= $data['label']; ?>" title="<?= $data['label']; ?>" border="0"/>
                                        <div class="wd_selected_product_amount wdp_ref_<?= $mainIndex.$listIndex; ?>"></div>
                                      </div>

@@ -36,7 +36,7 @@ function wd_form_customizer_settings($wp_customize) {
       'type' => 'text'
   )));
   $wp_customize->add_control( new WP_Customize_Control ( $wp_customize, 'wd_category_page_url_control_id', array(
-      'label' => __('Contact us page URL', 'wd-order-form'),
+      'label' => __('Category page URL', 'wd-order-form'),
       'section' => 'wd_order_form_section_id',
       'settings' => 'wd_category_page_url_field',
       'type' => 'text'

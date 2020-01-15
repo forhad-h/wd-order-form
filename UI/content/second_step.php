@@ -40,8 +40,8 @@
                   </div>
                 </div>
                 <div class="text-left">
-                      <a href="C:\Users\MITHU\Desktop\F\first_step.html" class="btn btn-black text-uppercase btn-lg goBack_Payslips" id="backStep1Btn">Go Back</a>
-                      <a href="C:\Users\MITHU\Desktop\F\third_step.html" class="btn btn-danger text-uppercase btn-lg Payslips_part2" id="nextStep3Btn">Next Step</a>
+                      <a href="#" class="btn btn-black text-uppercase btn-lg goBack_Payslips" id="backStep1Btn">Go Back</a>
+                      <a href="#" class="btn btn-danger text-uppercase btn-lg Payslips_part2" id="nextStep3Btn">Next Step</a>
                 </div>
               </div>
               <div class="col-sm-4">&nbsp;</div>

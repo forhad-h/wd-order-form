@@ -116,7 +116,7 @@
               <div class="style_box">
                 <div class="main_hedding sky_blue_bg">
                   <h2><span class="wd_cond_title">Payslip <?= $i; ?></span></h2>
-                  <input type="hidden" value="<?= $i; ?> " name="wd_cond_title_field[]" class="wd_cond_title_field" />
+                  <input type="hidden" value="Payslip <?= $i; ?> " name="wd_cond_title_field[]" class="wd_cond_title_field" />
                 </div>
                 <div class="row">
                   <div class="col-xl-7 col-lg-10 col-md-10 col-sm-12 offset-md-1">
@@ -125,7 +125,7 @@
                       <div class="row">
                         <div class="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                           <label for="BAddress">Payslip Date</label>
-                          <input type="text" size="32" name="payslip_date[]" class="showcalend datepicker form-control" />
+                          <input type="text" size="32" name="payslip_date[]" id="BAddress" class="showcalend datepicker form-control" />
                         </div>
                       </div>
 

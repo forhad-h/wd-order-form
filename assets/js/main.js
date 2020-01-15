@@ -30,12 +30,20 @@
 
     if ($('#0-Other').prop('checked')) {
       window.location = wdForm.contactUsPageUrl
-      return false
+      return
     }
     if (!isRadioValid('.item_list')) return false
 
+
+    if (formType === 'p45' || formType === 'other_documents') {
+      $('#firstStep').hide()
+      $('#thirdStep').show()
+      return
+    }
+
     $('#firstStep').hide()
     $('#secondStep').show()
+
   })
 
   $('.item_list input[type=radio]').on('change', function() {
@@ -55,22 +63,42 @@
     }
     $('#startEndDate').html('')
     $('#startEndDate').append(singleMarkups)
+
+    if (formType === 'p45') {
+      var amount = $(this).val().split('')[0]
+      $('#wdSelectableAmount').val(amount)
+    }
   })
 
   /* In second step */
+
   $('#backStep1Btn').on('click', function(e) {
     e.preventDefault()
+
+    if (formType === 'p45' || formType === 'other_documents') {
+      $('#thirdStep').hide()
+      $('#firstStep').show()
+      return
+    }
+
     $('#secondStep').hide()
     $('#firstStep').show()
+
   })
+
   $('#nextStep3Btn').on('click', function(e) {
     e.preventDefault()
 
-    if (!isRadioValid('.type_list')) return false
+    if (formType !== 'sa302') {
+      if (!isRadioValid('.type_list')) return false
+    } else {
+      if (!isRadioValid('.item_list2')) return false
+    }
 
     $('#secondStep').hide()
     $('#thirdStep').show()
   })
+
 
   $('.type_list input[type=radio]').on('change', function() {
     // get form type
@@ -105,7 +133,7 @@
     }
 
     // show conditional fields with corresponding title
-    if (formType === 'utility_bills') {
+    if (formType === 'utility_bills' || formType === 'other_documents') {
       if ($('#wdSelectedProducts').length) {
         var totalItems = 0
         var titleArr = ['']
@@ -131,7 +159,14 @@
       }
     }
 
+
     if (formType === 'payslips') {
+      var totalItems = parseInt($('#wdSelectableAmount').val())
+      $('.wd_conditional_single_field').slice(totalItems).remove()
+    }
+
+
+    if (formType === 'p60') {
       var totalItems = parseInt($('#wdSelectableAmount').val())
       $('.wd_conditional_single_field').slice(totalItems).remove()
     }
@@ -169,6 +204,7 @@
 
     $('.wd_option_box').hide()
 
+
     if ($(this).hasClass('hasSelection1')) {
       // if has selection option
       $('#wdHasSelection1').val(true)
@@ -189,33 +225,81 @@
 
     $('.wd_product_image_wrapper img').removeClass('has_error')
 
-
-    $('.wd_product_image_wrapper').not('.wd_has_value').removeClass('selected')
+    if (formType !== 'sa302') {
+      $('.wd_product_image_wrapper').not('.wd_has_value').removeClass('selected')
+    }
 
     if (!$(this).hasClass('wd_has_value')) {
       // select process
+
       $(this).addClass('selected')
-      $(this).next('.wd_option_box').show()
+
+      // for utility_bills only
+      if (formType === 'utility_bills' || formType === 'other_documents') {
+        $(this).next('.wd_option_box').show()
+      }
+
+      if (formType === 'p45') {
+        var selectableAmount = parseInt($('#wdSelectableAmount').val())
+        var slectedAmount = parseInt($('#wdSelectedAmount').val())
+
+
+        var ref = $(this).parents('.wd_single_product').attr('data-ref')
+        var title = $(this).next('.wd_option_box').next('h4').text()
+
+        if (selectableAmount >= (slectedAmount + 1)) {
+          $('#wdSelectedAmount').val(slectedAmount + 1)
+          $(this).addClass('wd_has_value')
+
+          $('#wdSelectedProducts')
+            .append('<input type="hidden" id="wdSelectedProduct' + ref + '" name="selected_product[]" value="' + title + ')" />')
+        } else {
+          $(this).removeClass('selected')
+        }
+      }
+
+
     } else {
       // deselect process
 
-      var ref = $(this).next('.wd_option_box').find('.wd_product_option').attr('data-product-ref')
-      var selectedAmount = parseInt($('#wdSelectedAmount').val())
-      var decreaseAmount = parseInt($(this).find('.wd_selected_product_amount').text())
+      if (formType === 'utility_bills' || formType === 'other_documents') {
+        var ref = $(this).next('.wd_option_box').find('.wd_product_option').attr('data-product-ref')
+        var selectedAmount = parseInt($('#wdSelectedAmount').val())
+        var decreaseAmount = parseInt($(this).find('.wd_selected_product_amount').text())
 
-      $(this).find('.next_step_4_btn').hide()
-      $(this).next('.wd_option_box').find('.next_step_4_btn').hide()
+        $(this).find('.next_step_4_btn').hide()
+        $(this).next('.wd_option_box').find('.next_step_4_btn').hide()
 
-      // remove generated input element from product selection
-      $('#wdSelectedProducts').find("#wdSelectedProduct" + ref).remove()
-      if (selectedAmount > 0) {
-        $('#wdSelectedAmount').val(selectedAmount - decreaseAmount)
+        // remove generated input element from product selection
+        $('#wdSelectedProducts').find("#wdSelectedProduct" + ref).remove()
+
+
+        if (selectedAmount > 0) {
+          $('#wdSelectedAmount').val(selectedAmount - decreaseAmount)
+        }
+        $(this).next('.wd_option_box').find('.wd_product_option').prop('checked', false)
+        $(this).find('.wd_selected_product_amount').text('')
       }
 
-      $(this).next('.wd_option_box').find('.wd_product_option').prop('checked', false)
-      $(this).find('.wd_selected_product_amount').text('')
+      if (formType === 'p45') {
+        var slectedAmount = parseInt($('#wdSelectedAmount').val())
+
+        $('#wdSelectedAmount').val(slectedAmount - 1)
+        var ref = $(this).parents('.wd_single_product').attr('data-ref')
+
+        $('#wdSelectedProducts').find('#wdSelectedProduct1').remove()
+
+        $('#wdSelectedProducts').find("#wdSelectedProduct" + ref).remove()
+      }
+
       $(this).removeClass('wd_has_value')
       $(this).removeClass('selected')
+      $(this).find('.wd_selected_product_amount').hide();
+    }
+
+
+    if (formType === 'sa302') {
+      $(this).addClass('selected')
     }
 
   })
@@ -225,6 +309,7 @@
     $('#displayProductType').text($(this).val())
     $('#wdProductType').val($(this).val())
   })
+
 
 
 
@@ -268,7 +353,78 @@
       $(this).prop('checked', false)
       $(this).parents('.wd_option_box').prev('.wd_product_image_wrapper').find('.wd_selected_product_amount').text('')
       $(this).parents('.wd_option_box').prev('.wd_product_image_wrapper').find('.wd_selected_product_amount').hide()
+    } else {
+      $(this).parents('.wd_option_box').prev('.wd_product_image_wrapper').find('.wd_selected_product_amount').show()
+
+      $('#wdSelectedProducts')
+        .append('<input type="hidden" id="wdSelectedProduct' + ref + '" name="selected_product[]" value="' + currentVal + "," + title + '" />')
+      $('#wdSelectedAmount').val(selectedAmount + currentVal)
+
+      $(this).parents('.wd_option_box').prev('.wd_product_image_wrapper').addClass('wd_has_value')
+
+      $(this).parents('.wd_option_box').hide()
+    }
+
+    // hide or show next step button
+    if (selectableAmount === (selectedAmount + currentVal)) {
+      $('.ts_utility_bills').find('.next_step_4_btn').show()
+    } else {
+      $('.ts_utility_bills').find('.next_step_4_btn').hide()
+    }
+
+  })
+
+  /*
+    sa302
+  */
+  if (formType === 'sa302') {
+    $('.item_list2 input[type=radio]').on('change', function() {
+      var item_value = $(this).val().split(',')
+      if (item_value[0] === '0') {
+        $('.wd_product_list').find('[data-ref=1]').hide()
+      } else {
+        $('.wd_product_list').find('[data-ref=1]').show()
+      }
+    })
+  }
+
+
+  /*
+    other_documents
+  */
+  $('.wdob_other_documents .wd_selection1 li').hide()
+
+  $('.wdpl_other_documents').on('click', function() {
+    var selectableAmount = +$('#wdSelectableAmount').val()
+    $(this)
+      .next('.wdob_other_documents')
+      .find('.wd_selection1 li')
+      .slice(0, selectableAmount)
+      .show();
+  })
+
+  $('.wdob_other_documents .wd_selection1 .wd_product_option').on('change', function() {
+    // get reference number
+    var ref = $(this).attr('data-product-ref')
+    var title = $(this).parents('.wd_option_box').next('h4').text()
+    var selectableAmount = parseInt($('#wdSelectableAmount').val())
+    var currentVal = parseInt($(this).val())
+    var selectedAmount = parseInt($('#wdSelectedAmount').val())
+
+
+    $('#displaySelectableAmount').text(selectableAmount) // update amount in modal
+
+    $('.wdp_ref_' + ref).text($(this).val()) // update UI
+
+
+    if (selectableAmount < (selectedAmount + currentVal)) {
+      $('#maxSelectionAlert').modal()
+      $(this).prop('checked', false)
+      $(this).parents('.wd_option_box').prev('.wd_product_image_wrapper').find('.wd_selected_product_amount').text('')
+      $(this).parents('.wd_option_box').prev('.wd_product_image_wrapper').find('.wd_selected_product_amount').hide()
       return false
+    } else {
+      $(this).parents('.wd_option_box').prev('.wd_product_image_wrapper').find('.wd_selected_product_amount').show()
     }
 
 
@@ -282,9 +438,9 @@
 
     // hide or show next step button
     if (selectableAmount === (selectedAmount + currentVal)) {
-      $('.ts_utility_bills').find('.next_step_4_btn').show()
+      $('.ts_other_documents').find('.next_step_4_btn').show()
     } else {
-      $('.ts_utility_bills').find('.next_step_4_btn').hide()
+      $('.ts_other_documents').find('.next_step_4_btn').hide()
     }
 
   })

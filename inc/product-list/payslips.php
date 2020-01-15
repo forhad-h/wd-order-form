@@ -2,7 +2,6 @@
 /*
    Data for product list
 */
-$max_options = 12;
 $product_list = [
   [
      ['label' => "Green Payslip <a class='qustion' href='javascript:void(0);' data-container='body' data-toggle='popover' data-placement='top' data-content='You will only receive a paper copy and a scanned version upon request. Scanned versions take longer to process. If you need a digital version urgently, select the Digital Only copy.' data-original-title='' title=''><i class='fa fa-question-circle'></i></a>", 'image_name' => 't_10.jpg',],

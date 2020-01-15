@@ -7,6 +7,7 @@ $step_title_4 = 'Fill out the details needed';
 
 $help_info1 = '';
 $help_info2 = '';
+$max_options = 10;
 
 $item_fields = [
   [ 'amount' => 1, 'label' => 'Utility Bill', 'price' => 20, 'showAmount' => true ],
