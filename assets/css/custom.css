@@ -19,12 +19,7 @@
 .wd_product_list,
 .wd_conditional_single_field
 */
-#firstStep,
-#secondStep,
-#thirdStep,
-#lastStep,
-.wd_product_list,
-.wd_conditional_single_field {
+#firstStep {
   display: block;
 }
 
